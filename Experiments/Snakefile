@@ -1,0 +1,191 @@
+################################################################################
+# SETUP
+################################################################################
+# Modules
+from os.path import join
+
+# Configuration
+OUTPUT_DIR = config['output_dir'] = config.get('output_dir', 'output') # default: output
+config['random_seed'] = config.get('random_seed', 1) # default: 1
+config['n_run'] = config.get('n_run', 300) # Number of runs for NMF used in  Liu et al.
+config['k_pre'] = config.get('k_pre', 2) # Number of signatures found for pre-treatment.
+config['k_post_only'] = config.get('k_post_only', 3) # Number of signatures found for post only treatment.
+
+################################################################################
+
+# Directories
+DATA_DIR = 'data'
+SRC_DIR = 'src'
+OUTPUT_DIR = 'figs'
+
+LIB_DIR = join(SRC_DIR, 'lib')
+RAW_DIR = join(DATA_DIR, 'raw')
+
+# Input Files
+SBS96_PRE_COUNTS = join(DATA_DIR, 'counts.pre-treatment.Liu-30-2017.SBS-96.tsv')
+SBS96_POST_COUNTS = join(DATA_DIR, 'counts.post-treatment.Liu-30-2017.SBS-96.tsv')
+SBS96_UNIQUE_POST_COUNTS = join(DATA_DIR, 'counts.unique-post-treatment.Liu-30-2017.SBS-96.tsv')
+SBS96_COSMIC_SIG = join(DATA_DIR, 'cosmic-signatures.SBS-96.tsv')
+
+# Output Files
+EXP1_PLOT = join(OUTPUT_DIR, 'exp1-plot.pdf')
+EXP2_PLOT = join(OUTPUT_DIR, 'exp2-plot.pdf')
+EXP3_PLOT = join(OUTPUT_DIR, 'exp3-plot.pdf')
+EXP4_PLOT = join(OUTPUT_DIR, 'exp4-plot.pdf')
+EXP5A_PLOT = join(OUTPUT_DIR, 'exp5a-plot.pdf')
+EXP5B_PLOT = join(OUTPUT_DIR, 'exp5b-plot.pdf')
+EXP5C_PLOT = join(OUTPUT_DIR, 'exp5c-plot.pdf')
+
+################################################################################
+
+# Scripts
+PLOT_COUNTS_PY = join(SRC_DIR, 'plot_counts.py')
+RUN_EXP_1_PY = join(SRC_DIR, 'run_exp_1.py')
+RUN_EXP_2_PY = join(SRC_DIR, 'run_exp_2.py')
+RUN_EXP_3_PY = join(SRC_DIR, 'run_exp_3.py')
+RUN_EXP_4_PY = join(SRC_DIR, 'run_exp_4.py')
+RUN_EXP_5_PY = join(SRC_DIR, 'run_exp_5.py')
+
+################################################################################
+# GENRAL RULES
+################################################################################
+rule all:
+    input:
+        EXP1_PLOT,
+        EXP2_PLOT,
+        EXP3_PLOT,
+        EXP4_PLOT,
+        EXP5A_PLOT,
+        EXP5B_PLOT,
+        EXP5C_PLOT
+
+rule cleanup:
+    shell:
+        'rm -r {DATA_DIR} && rm -r {OUTPUT_DIR} && rm -r {LIB_DIR}'
+
+################################################################################
+# EXPERIMENT RULES
+################################################################################		
+
+# Plot the figure for the first experiment
+rule exp_1_plot:
+    input:
+        counts_pre = SBS96_PRE_COUNTS,
+        counts_post = SBS96_UNIQUE_POST_COUNTS,
+        signatures = SBS96_COSMIC_SIG
+    params:
+        n_run = config.get('n_run'),
+        k_pre  = config.get('k_pre'),
+        k_post_only = config.get('k_post_only'),
+        random_seed = config.get('random_seed')
+    output:
+        EXP1_PLOT
+    shell:
+        'python {RUN_EXP_1_PY} -ib {input.counts_pre} -ia {input.counts_post} -sf {input.signatures} -op {output} '\
+        '-nr {params.n_run} -kb {params.k_pre} -ka {params.k_post_only} -rs {params.random_seed}'
+		
+# Plot the figure for the second experiment
+rule exp_2_plot:
+    input:
+        counts_post = SBS96_UNIQUE_POST_COUNTS,
+        signatures = SBS96_COSMIC_SIG
+    params:
+        n_run = config.get('n_run'),
+        k_post_only = config.get('k_post_only'),
+        random_seed = config.get('random_seed')
+    output:
+        EXP2_PLOT
+    shell:
+        'python {RUN_EXP_2_PY} -ia {input.counts_post} -sf {input.signatures} -op {output} '\
+        '-nr {params.n_run} -ka {params.k_post_only} -rs {params.random_seed}'
+		
+# Plot the figure for the second experiment
+rule exp_3_plot:
+    input:
+        counts_post = SBS96_PRE_COUNTS,
+        signatures = SBS96_COSMIC_SIG
+    params:
+        n_run = config.get('n_run'),
+        k_pre = config.get('k_pre'),
+        random_seed = config.get('random_seed')
+    output:
+        EXP3_PLOT
+    shell:
+        'python {RUN_EXP_3_PY} -ib {input.counts_post} -sf {input.signatures} -op {output} '\
+        '-nr {params.n_run} -kb {params.k_pre} -rs {params.random_seed}'
+		
+# Plot the figure for the second experiment
+rule exp_4_plot:
+    input:
+
+    params:
+
+    output:
+        EXP4_PLOT
+    shell:
+        'python {RUN_EXP_4_PY} -op {output}' 
+		
+# Plot the figure for the second experiment
+rule exp_5a_plot:
+    input:
+        counts_post = SBS96_PRE_COUNTS
+    params:
+        
+    output:
+        EXP5A_PLOT
+    shell:
+        'python {RUN_EXP_5_PY} -if {input.counts_post} -d 1 -op {output} '
+		
+rule exp_5b_plot:
+    input:
+        counts_post = SBS96_POST_COUNTS
+    params:
+        
+    output:
+        EXP5B_PLOT
+    shell:
+        'python {RUN_EXP_5_PY} -if {input.counts_post} -d 1 -op {output} '		
+		
+rule exp_5C_plot:
+    input:
+        counts_post = SBS96_UNIQUE_POST_COUNTS
+    params:
+        
+    output:
+        EXP5C_PLOT
+    shell:
+        'python {RUN_EXP_5_PY} -if {input.counts_post} -d 0 -op {output} '
+		
+# Download data
+rule download_pre_sbs96_mutation_counts:
+    params:
+        url='https://obj.umiacs.umd.edu/mutation-signature-explorer/publications/Liu2017/processed/counts/counts.pre-treatment.Liu-30-2017.SBS-96.tsv'
+    output:
+        SBS96_PRE_COUNTS
+    shell:
+        'wget -O {output} {params.url}'
+		
+rule download_post_sbs96_mutation_counts:
+    params:
+        url='https://obj.umiacs.umd.edu/mutation-signature-explorer/publications/Liu2017/processed/counts/counts.post-treatment.Liu-30-2017.SBS-96.tsv'
+    output:
+        SBS96_POST_COUNTS
+    shell:
+        'wget -O {output} {params.url}'
+
+rule download_unique_post_sbs96_mutation_counts:
+    params:
+        url='https://obj.umiacs.umd.edu/mutation-signature-explorer/publications/Liu2017/processed/counts/counts.unique-post-treatment.Liu-30-2017.SBS-96.tsv'
+    output:
+        SBS96_UNIQUE_POST_COUNTS
+    shell:
+        'wget -O {output} {params.url}'
+
+# Download Cosmic Signatures
+rule download_cosmic_signatures_counts:
+    params:
+        url='https://obj.umiacs.umd.edu/mutation-signature-explorer/signatures/COSMIC/processed/cosmic-signatures.SBS-96.tsv'
+    output:
+        SBS96_COSMIC_SIG
+    shell:
+        'wget -O {output} {params.url}'
