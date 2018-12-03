@@ -64,6 +64,10 @@ Interpreting the graphs that follow, we see that total mutational burden is not 
 
 ![Experiment 5a](exp5c.PNG)
 
+### Conclusions, caveats, and future work
+To sum up, we investigated possible associations between mutational and demographic features with PFS period for patients with muscle-invasive bladder cancer. Our results, suggest that there is a strong correlation between signature exposures in the post-only treatment case and PFS. Specifically, patients who have the cisplatin signature as their dominant one, tend to have a shorter PFS period. This finding is quite unsettling, since the activity of this particular signature is related to the chemotherapy treatment those patients underwent, and hence this indication can be interpreted as an argument against this treatment. Moreover, we discovered that female patients have a significantly larger PFS period compared to male ones. Moving to our negative results, our experiments suggest that there is no significant association between PFS and age, mutational burden and pre-treatment exposures.
+
+We believe that one of the most serious caveats of this work is the relatively small size of our cohort, which included only 30 patients. This undermines the significance of our results, since they are statistically underpowered. Having a larger dataset, i.e. something in the hundreds, would let us use a part of it as the training set and another part as the validation set. With only 30 samples that was impossible. Therefore, the most fruitful future direction for this work would to be to run this experiments in a larger cohort, and then validate the findings using another relatively big dataset.
 
 ## References
 1. Liu, et al. (2017) "Mutational patterns in chemotherapy resistant muscle-invasive bladder cancer." _Nature Communications_ **8**, Article number: 2193. [doi: 10.1038/s41467-017-02320-7](https://doi.org/10.1038/s41467-017-02320-7)
