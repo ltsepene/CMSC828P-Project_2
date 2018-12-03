@@ -22,7 +22,7 @@ For this experiment we tried to infer if there are any interesting correlations 
 
 To compute signatures and exposures we used our code from project 1, setting the effective number of signatures to the values used in Liu et al. The only difference is that this time we used more NMF runs, specifically 300 instead of 100, in order to get more accurate results. The following graph shows the exposures for both cases for all 29 patients of interest. 
 
-![Experiment 1](exp1.jpg)
+![Experiment 1](exp1.PNG)
 
 ## Results, conclusions, and caveats
 
