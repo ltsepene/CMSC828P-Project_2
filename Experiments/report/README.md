@@ -47,29 +47,7 @@ For this experiment we tried to discover correlations between PFS and demographi
 
 Using the age as a metric for PFS seems to indicate no correlation at all between that and PFS. On the other hand, it is clear that the PFS values for women are significantly longer than those of male patients, since the two box plots show a considerable difference. However, we should mention that our dataset constisted mainly of male patients. Specifically, we had only 7 women and 23 men. This shows some of the restrictions imposed by the relatively small dataset, since our results cannot be fully trusted.
 
-### Signature Discovery
-
-If we use the number of signatures used by the authors we get surprisingly similar results. Some minor differences are observed in the second cohort only. 
-
-Liu's signatures:
-![Liu's et al. results](Liu.jpg) 
-
-Pre-treatment signatures we discovered:
-![Pre-treatment](pre.jpg)
-
-Post-treatment signatures we discovered:
-![Post-treatment](post.jpg)
-
-Post-only-treatment signatures we discovered:
-![Post only](post-only.jpg)
-
-The only differences are those observed in the second cohort. For that case, we are able to discover 2 out of the 4 signatures presented in the paper (the last two in
-our figure). Our first signature looks like a combination of the of signatures 3 and 4 of the paper. As for our second signature, we can't see any similarity between that
-and any of the signatures in the paper. That's mainly because of the many C > A mutations. For the other two cohorts, our results look suprisingly similar to that of the 
-paper. The only difference lies in the cosine similarities with the cosmic collection. In some cases, we get the same Cosmic signature correspondings as the authors. But 
-in other cases we get a combination of signatures instead of a single cosmic one. This may be the case because the authors may not have made explicit comparisons with combinations
-of cosmic signatures for all of the discovered ones. Overall, reproducing the experiment given the same k as in the paper seems possible. Minor differences may result from
-details in the use of NMF that the authors don't mention.
+## Experiment 5
 
 ## References
 1. Liu, et al. (2017) "Mutational patterns in chemotherapy resistant muscle-invasive bladder cancer." _Nature Communications_ **8**, Article number: 2193. [doi: 10.1038/s41467-017-02320-7](https://doi.org/10.1038/s41467-017-02320-7)
