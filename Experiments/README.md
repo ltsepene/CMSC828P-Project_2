@@ -1,7 +1,6 @@
-# Reproducing Liu, et al. (_Nature Communications_, 2017)
+# Investigating correlations between PFS and mutational/demographical feautures based on Liu, et al. (_Nature Communications_, 2017)
 
-Source code for reproducing signature discovery from Liu, et al. [1]. Briefly, our goal is to reproduce Figure 2a-2c.
-Additional details of the experiments, data, and conclusions can be found in the [`report/`](report/).
+Source code for all experiments. Briefly, our goal is discover interesting correlations between PFS and and mutational/demographical feautures in muscle-invasive bladder cancer. Additional details of the experiments, data, and conclusions can be found in the [`report/`](report/).
 
 ## Setup
 
@@ -21,7 +20,7 @@ To download the input data files and reproduce the experiments and..., simply ru
 
     snakemake all
 
-Since the cohort considered is quite small (30 samples), the runtime required to produce all figures is less than 5 minutes.
+Since the cohort considered is quite small (30 samples), the runtime required to produce all figures is less than 10 minutes.
 
 ### Configuration
 
