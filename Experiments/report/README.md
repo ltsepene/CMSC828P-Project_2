@@ -18,7 +18,11 @@ We performed the following set of experiments:
 Initially, the data we used included the mutational counts given to us for the first project. Those data include 30 samples for the pre-treatment and post-treatment case, but only 29 for the post-only case. We used those datasets to calculate signatures and exposures, as in project 1, but also mutational burdens. All the additional data required were available in Supplementary material of the Liu et al. submission website https://www.nature.com/articles/s41467-017-02320-7#Sec29 (Supplementary Data 1). To match demographic features and PFS information to each patient we used the patient ids provided in both the datasets of project 1 and the above supplementary table. Furthermore, we had to identify which patient was missing in the post-only case and make the necessary changes in our code in order to correctly handle that.
 
 ## Experiment 1 
+For this experiment we tried to infer if there are any interesting correlations between pre-treatment and post-only treatment signature profiles. We chose to study the post-only scenario, since our NMF implementation from project 1 was able to fully reproduce the results for this case, compared to the post-treatment one. Our goal was to possibly identify if there exists a pre-treatment profile that strongly correlates with increased activity of the newly discovered cisplatin signature. 
 
+To compute signatures and exposures we used our code from project 1, setting the effective number of signatures to the values used in Liu et al. The only difference is that this time we used more NMF runs, specifically 300 instead of 100, in order to get more accurate results. The following graph shows the exposures for both cases for all 29 patients of interest. 
+
+![Experiment 1](exp1.jpg)
 
 ## Results, conclusions, and caveats
 
