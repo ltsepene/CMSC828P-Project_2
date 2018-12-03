@@ -41,9 +41,11 @@ For this experiment we did the same things as in Experiment 2, however we tried 
 The above graph indicates that shorter PFS weakly correlates with the APOBEC signature. This is because there is a clear distance between the two medians. However, unlike the previous experiment, the results here don't appear that strong.
 
 ## Experiment 4
-For this experiment we tried to discover correlations between PFS and demographical features such as age and sex. For the age metric, we distinguish between two cases. That of patients that are at most 65 years old and that of patients that are older than 65. The reason for using 65 is because that is the median of the age data. Considering a classification of more categories would only undermine our statistical results, since we only have 30 samples. Our box plots are shown below. Again the orange line indicates the median value and circles correspond to outliers. 
+For this experiment we tried to discover correlations between PFS and demographical features such as age and sex. For the age metric, we distinguish between two cases. That of patients that are at most 65 years old and that of patients that are older than 65. The reason for using 65 is because that is the median of the age data. Considering a classification of more categories would only undermine our statistical results, since we only have 30 samples. Our box plots are shown below. Again the orange line indicates the median value and circles correspond to outliers. For the age plot, the first box corresponds to patients of age at most 65, while the second one corresponds to patients older than 65. For the sex plot, the first box corresponds to male patients, while the second corresponds to female patients.
 
 ![Experiment 4](exp4.PNG)
+
+Using the age as a metric for PFS seems to indicate no correlation at all between that and PFS. On the other hand, it is clear that the PFS values for women are significantly longer than those of male patients, since the two box plots show a considerable difference. However, we should mention that our dataset constisted mainly of male patients. Specifically, we had only 7 women and 23 men. This shows some of the restrictions imposed by the relatively small dataset, since our results cannot be fully trusted.
 
 ### Signature Discovery
 
