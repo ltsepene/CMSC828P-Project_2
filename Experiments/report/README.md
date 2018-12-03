@@ -20,11 +20,17 @@ Initially, the data we used included the mutational counts given to us for the f
 ## Experiment 1 
 For this experiment we tried to infer if there are any interesting correlations between pre-treatment and post-only treatment signature profiles. We chose to study the post-only scenario, since our NMF implementation from project 1 was able to fully reproduce the results for this case, compared to the post-treatment one. Our goal was to possibly identify if there exists a pre-treatment profile that strongly correlates with increased activity of the newly discovered cisplatin signature. 
 
-To compute signatures and exposures we used our code from project 1, setting the effective number of signatures to the values used in Liu et al. The only difference is that this time we used more NMF runs, specifically 300 instead of 100, in order to get more accurate results. The following graph shows the exposures for both cases for all 29 patients of interest. 
+To compute signatures and exposures we used our code from project 1, setting the effective number of signatures to the values used in Liu et al. The only difference is that this time we used more NMF runs, specifically 300 instead of 100, in order to get more accurate results. The following graph shows the exposures for both cases for all 29 patients of interest. Each bar corresponds to a patient (the ordering of the patients is the same in both graphs), and the bar plots show the activity of each signature.
 
 ![Experiment 1](exp1.PNG)
 
-## Results, conclusions, and caveats
+It is clear, even to the naked eye, that no correlation between pre and post-only exposures exists. Take for instance the pairs of patients (5,6) and (28,29) (the last two). Both patients in each pair have remarkably similart pre-treatment exposures, but quite different post-only exposures. Moreover, the activity of the cisplatin signatures doesn't seem to depend on the activity of either the APOBEC or the NER signature.
+
+## Experiment 2
+For this experiment we tried to infer correlations between post-only exposures and PFS. The exposures were calculated as mentioned earlier. We stratified patients based on their dominant signature, that is the signature with the highest exposure value among the three (APOBEC, AGING, Cisplatin). We also used cosine similarities in order to differentiate the discovered signatures. The following box plots show our results. The orange line indicates the median value and circles correspond to outliers. Also, the first box is for the APOBEC signature, the second for the AGING and the third for the cisplatin one.
+
+![Experiment 2](exp2.PNG)
+
 
 ### Inferring the effective number of signatures
 
