@@ -31,26 +31,14 @@ For this experiment we tried to infer correlations between post-only exposures a
 
 ![Experiment 2](exp2.PNG)
 
+The above graph indicates that shorter PFS strongly correlates with the cisplatin signature. This result seems like an argument against this type of chemotherapy. As argued in the Liu et al. paper, this signature is a result of this specific treatment. Here, we see that a side-effect of it is shorter PFS.
 
-### Inferring the effective number of signatures
+## Experiment 3
+For this experiment we did the same things as in Experiment 2, however we tried to find correlation for pre-treatment exposures. The following box plots show our results. The orange line indicates the median value and circles correspond to outliers. Also, the first box is for the APOBEC signature, and the second for NER.
 
-The figures below show the statistics we got. EV stands for expected variance, CC for cophenetic coefficients, RSS for residual sum of squares, RE for residual error and
-ACS for average cosine similarity.
+![Experiment 3](exp3.PNG)
 
-Pre-treatment:
-![Pre-treatment](pre-k.jpg)
-
-Post-treatment:
-![Post-treatment](post-k.jpg)
-
-Post-only-treatment:
-![Post only](post-only-k.jpg)
-
-For the pre-treatment case Liu et al. chose k=2. However, in our statistics only 2 out of the 4 metrics suggest that as a good choice. Namely, the cophenetic coefficients 
-and the cosine similarity. Given that Liu et al. use the Brunet update method in their NMF, which relies strongly on cophenetic coefficients, k=2 may not be that bad after all.
-For the post-treatment case the authors use k=4. We believe that our measurements agree with that. The average cosine similarity is maximized for that value and also all
-other metrics take reasonable values there. Finally, in the post-only case, Liu et al. choose k=3. To our understanding, our results also agree with, namely for the above reasons.
-Therefore, we can conclude that in some sense, that inferring the number of active signatures is reproducible.
+The above graph indicates that shorter PFS weakly correlates with the APOBEC signature. This is because there is a clear distance between the two medians. However, unlike the previous experiment, the results here don't appear that strong.
 
 ### Signature Discovery
 
