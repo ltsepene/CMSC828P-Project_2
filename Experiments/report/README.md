@@ -40,6 +40,11 @@ For this experiment we did the same things as in Experiment 2, however we tried 
 
 The above graph indicates that shorter PFS weakly correlates with the APOBEC signature. This is because there is a clear distance between the two medians. However, unlike the previous experiment, the results here don't appear that strong.
 
+## Experiment 4
+For this experiment we tried to discover correlations between PFS and demographical features such as age and sex. For the age metric, we distinguish between two cases. That of patients that are at most 65 years old and that of patients that are older than 65. The reason for using 65 is because that is the median of the age data. Considering a classification of more categories would only undermine our statistical results, since we only have 30 samples. Our box plots are shown below. Again the orange line indicates the median value and circles correspond to outliers. 
+
+![Experiment 4](exp4.PNG)
+
 ### Signature Discovery
 
 If we use the number of signatures used by the authors we get surprisingly similar results. Some minor differences are observed in the second cohort only. 
