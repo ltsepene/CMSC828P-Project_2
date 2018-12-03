@@ -1,34 +1,24 @@
-# Reproducing Liu, et al. (_Nature Communications_, 2017)
+# Investigating correlations between PFS and mutational/demographical feautures based on Liu, et al. (Nature Communications, 2017)
 
-**Author**: Leonidas Tsepenekas ([mdml@cs.umd.edu](mailto:mdml@cs.umd.edu))
-**Date**: November 3, 2018
+**Author**: Leonidas Tsepenekas ([ltsepene@cs.umd.edu](mailto:ltsepene@cs.umd.edu))
+**Date**: November 14, 2018
 
 ## Plan of investigation
 
-Liu, et al. [1] performed discovery of mutational signatures analysis in in chemotherapy resistant muscle-invasive bladder cancer in three cohorts. 
-The first cohort involved pre-treatment mutations, the second post-treatment mutations and the last post-only mutations. 
+Liu, et al. [1] performed discovery of mutational signatures analysis in chemotherapy resistant muscle-invasive bladder cancer for three cohorts. The first cohort involved pre-treatment mutations, the second post-treatment mutations and the last post-only mutations for the same set of patients. Their study also includes information about the progression-free survival (PFS) period for each patient. In this project, our goal is investigate interesting factors that may correlate with PFS. In the discussion that follows, we measure PFS as the days passed between cystectomy and the day the cancer reoccured. 
 
-We reproduced this analysis, following the details described in the paper, with two goals in mind:
-1. Infer the number of effective signatures for each cohort using the approach and metrics described in the paper. Vital details were missing, such as how they combine the 
-results of their studied metrics when some of them disagree, and so we had to interpret the measurements on our own.
-2. Given the above, implement the procedure described in the paper in order to actually determine the mutational signatures in each case.
+We performed the following set of experiments:
+1. For each patient we computed the pre-treatment and post-only treatment signature profile, using the NMF approach of Liu et al., that we implemented for project 1. The goal of this experiment was to identify any relationship between pre and post-only signature profiles.
+2. We tried to associate PFS with specific signatures in post-only treatment signature profiles. 
+3. We tried to associate PFS with specific signatures in pre-treatment signature profiles. 
+4. We tried to associate PFS with the age and sex of the patients in our cohort.
+5. We tried to associate PFS with mutational load in all three cases considered. That is for, pre-treatment, post-treatment, and post-only treatment mutations.
 
-### Infer number of effective signatures
-The optimal rank (number of mutational signatures) was inferred after manually examining cophenetic coefficients, residuals, and residual sum of
-squares for 50 NMF runs at ranks 2–8, as well as comparing discovered signatures to previously discovered signatures using a cosine similarity measure. High cophenetic coefficients, low residuals, low residual sum of squares, and high cosine
-similarity to previous signatures were preferred. In addition to the above metrics used by Liu, et al., we also consider the expected variance. Moreover, since the paper 
-frequently uses the average of previously discovered signatures in order to compute cosine similarity, we extended the cosmic signatures collection to a 30 * 30 collection of
-all possible combinations of signatures, taking the average of the two each time. This new collection obviously contains the original cosmic signatures. We performed all
-our comparisons based on that. Though the obtained results weren't much different from simply comparing with the original collection, we observed that this approach gave 
-slightly tighter results for figuring out the effective number of signatures. Finally, statistics for residual sum of squares, cophenetic coefficients and expected variance 
-were collected using the build in function estimate_rank() of nimfa. For the rest we manually collected residual errors and cosine similarities. For the residual error,
-we computed the average error for each possible k and for cosine similarity we found for each discovered signature the best fitting choice for it (with respect to the known
-combinations of cosmic signature) and then too the average of the highest cosine similarity of all discovered signatures.
+## Data
+Initially, the data we used included the mutational counts given to us for the first project. Those data include 30 samples for the pre-treatment and post-treatment case, but only 29 for the post-only case. We used those datasets to calculate signatures and exposures, as in project 1, but also mutational burdens. All the additional data required were available in Supplementary material of the Liu et al. submission website https://www.nature.com/articles/s41467-017-02320-7#Sec29 (Supplementary Data 1). To match demographic features and PFS information to each patient we used the patient ids provided in both the datasets of project 1 and the above supplementary table. Furthermore, we had to identify which patient was missing in the post-only case and make the necessary changes in our code in order to correctly handle that.
 
-#### Signature Discovery
-As described in the paper, we performed 200 independent NMF runs for the inferred rank and
-chose the resulting mutational signatures from the NMF run with the minimum residual error. We used the nimfa package for python in order to execute NMF. For the discovered
-signatures we also computed their cosine similarity with the extended 30*30 cosmic collection. 
+## Experiment 1 
+
 
 ## Results, conclusions, and caveats
 
