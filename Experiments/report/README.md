@@ -48,6 +48,19 @@ For this experiment we tried to discover correlations between PFS and demographi
 Using the age as a metric for PFS seems to indicate no correlation at all between that and PFS. On the other hand, it is clear that the PFS values for women are significantly longer than those of male patients, since the two box plots show a considerable difference. However, we should mention that our dataset constisted mainly of male patients. Specifically, we had only 7 women and 23 men. This shows some of the restrictions imposed by the relatively small dataset, since our results cannot be fully trusted.
 
 ## Experiment 5
+In this experiment we tried to see if mutational burden correlates with PFS. We considered all three cases available, that is the pre-treatment, the post-treatment and the post-only treatment cohorts. Basically, we just used the data of project 1. Calculating the total mutation count for each patient was fairly easy. For each patient we just added up all mutations from all the 96 categories. In the box plots that follow, we classify patients into two categories, based on how many mutations they have. For this distinction we use the median value of the total mutations count array of all patients. Again the orange line indicates the median value and circles correspond to outliers. In all cases, the first plot is for patients with total count less than the median, and the second for patients with more mutations.
+
+### Pre-treatment Scenario
+
+![Experiment 5a](exp5a.PNG)
+
+### Post-treatment Scenario
+
+![Experiment 5a](exp5b.PNG)
+
+### Post-only-treatment Scenario
+
+![Experiment 5a](exp5c.PNG)
 
 ## References
 1. Liu, et al. (2017) "Mutational patterns in chemotherapy resistant muscle-invasive bladder cancer." _Nature Communications_ **8**, Article number: 2193. [doi: 10.1038/s41467-017-02320-7](https://doi.org/10.1038/s41467-017-02320-7)
